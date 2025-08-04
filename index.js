@@ -19,16 +19,30 @@ io.on('connection', (socket) => {
 
   socket.on('new-user', (username) => {
     socket.username = username;
-    socket.broadcast.emit('chat message', `${username} joined the chat`);
+
+    // Broadcast join message
+    io.emit('chat message', {
+      username: 'System',
+      msg: `${username} joined the chat`,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
   });
 
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', `${socket.username || "Anonymous"}: ${msg}`);
+  socket.on('chat message', ({ msg, time }) => {
+    io.emit('chat message', {
+      username: socket.username || "Anonymous",
+      msg,
+      time
+    });
   });
 
   socket.on('disconnect', () => {
     if (socket.username) {
-      io.emit('chat message', `${socket.username} left the chat`);
+      io.emit('chat message', {
+        username: 'System',
+        msg: `${socket.username} left the chat`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
     } else {
       console.log("A user disconnected");
     }
