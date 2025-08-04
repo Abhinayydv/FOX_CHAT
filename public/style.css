@@ -86,3 +86,38 @@ button {
   text-align: right;
   padding-right: 6px;
 }
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .chat-container {
+    padding: 10px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .bubble {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .username {
+    font-size: 12px;
+  }
+
+  .timestamp {
+    font-size: 11px;
+  }
+
+  #msg-input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
