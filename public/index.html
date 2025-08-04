@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoxChat</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 0; }
+    #chat-box { height: 80vh; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+    #msgForm { display: flex; }
+    #m { flex: 1; padding: 10px; }
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>FoxChat 🦊</h1>
+  <div id="chat-box">
+    <ul id="messages"></ul>
+  </div>
+  <form id="msgForm">
+    <input id="m" autocomplete="off" placeholder="Type your message..." /><button>Send</button>
+  </form>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

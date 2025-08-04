@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoxChat</title>
+</head>
+<body>
+  <h1>🦊 FoxChat</h1>
+  <form id="chatForm">
+    <input type="text" id="message" placeholder="Enter your message" required />
+    <button type="submit">Send</button>
+  </form>
+
+  <p id="response"></p>
+
+  <script>
+    document.getElementById('chatForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const message = document.getElementById('message').value;
+
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message })
+      });
+
+      const data = await res.text();
+      document.getElementById('response').innerText = data;
+    });
+  </script>
+</body>
+</html>
